@@ -1,0 +1,3 @@
+a, b, c: byte
+j, k, l: long
+foo, bar, ham: double

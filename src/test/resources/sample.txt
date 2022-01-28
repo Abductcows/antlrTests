@@ -1,0 +1,9 @@
+byte a, b, c;
+
+long j, k, l;
+
+
+
+
+
+double foo, bar, ham;
