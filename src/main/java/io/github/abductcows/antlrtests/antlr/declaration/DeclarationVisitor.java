@@ -1,5 +1,5 @@
 // Generated from /home/abductcows/IdeaProjects/antlrTests/src/main/antlr4/Declaration.g4 by ANTLR 4.9.2
-package io.github.abductcows.antlrtests.antlr;
+package io.github.abductcows.antlrtests.antlr.declaration;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

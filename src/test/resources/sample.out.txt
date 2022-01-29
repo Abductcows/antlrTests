@@ -1,3 +1,4 @@
-a, b, c: byte
-j, k, l: long
-foo, bar, ham: double
+User
+String name, surname
+int (age)
+String (phone)

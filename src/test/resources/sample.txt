@@ -7,3 +7,6 @@ long j, k, l;
 
 
 double foo, bar, ham;
+
+
+char n,m,     o;

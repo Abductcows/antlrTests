@@ -1,10 +1,10 @@
-package io.github.abductcows.antlrtests
+package io.github.abductcows.antlrtests.declaration
 
-import io.github.abductcows.antlrtests.antlr.DeclarationBaseVisitor
-import io.github.abductcows.antlrtests.antlr.DeclarationParser
+import io.github.abductcows.antlrtests.antlr.declaration.DeclarationBaseVisitor
+import io.github.abductcows.antlrtests.antlr.declaration.DeclarationParser
 import java.io.File
 
-class DeclarationVisitor(private val outputFileName: String) : DeclarationBaseVisitor<Unit>() {
+class DeclarationVisitor(outputFileName: String) : DeclarationBaseVisitor<Unit>() {
 
     private val outputFile: File = File(outputFileName)
 
@@ -36,10 +36,5 @@ class DeclarationVisitor(private val outputFileName: String) : DeclarationBaseVi
         declarationOutput.takeIf { it.isNotEmpty() }?.let {
             outputFile.appendText(it + "\n")
         }
-    }
-
-    private fun failAndCleanup(message: String) {
-        outputFile.delete()
-        throw RuntimeException(message)
     }
 }
