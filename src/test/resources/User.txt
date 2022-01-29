@@ -1,0 +1,4 @@
+User
+String name, surname
+int (age)
+String (phone)
