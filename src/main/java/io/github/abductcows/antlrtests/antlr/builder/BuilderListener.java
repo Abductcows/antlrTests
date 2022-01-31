@@ -68,6 +68,16 @@ public interface BuilderListener extends ParseTreeListener {
 	 */
 	void exitRequired_members(BuilderParser.Required_membersContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BuilderParser#required_member}.
+	 * @param ctx the parse tree
+	 */
+	void enterRequired_member(BuilderParser.Required_memberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BuilderParser#required_member}.
+	 * @param ctx the parse tree
+	 */
+	void exitRequired_member(BuilderParser.Required_memberContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BuilderParser#optional_members}.
 	 * @param ctx the parse tree
 	 */
@@ -77,6 +87,26 @@ public interface BuilderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOptional_members(BuilderParser.Optional_membersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BuilderParser#optional_member}.
+	 * @param ctx the parse tree
+	 */
+	void enterOptional_member(BuilderParser.Optional_memberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BuilderParser#optional_member}.
+	 * @param ctx the parse tree
+	 */
+	void exitOptional_member(BuilderParser.Optional_memberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BuilderParser#default_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefault_value(BuilderParser.Default_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BuilderParser#default_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefault_value(BuilderParser.Default_valueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BuilderParser#declaration_separator}.
 	 * @param ctx the parse tree

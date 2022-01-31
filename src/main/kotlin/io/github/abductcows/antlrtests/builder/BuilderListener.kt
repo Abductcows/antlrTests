@@ -7,13 +7,17 @@ import java.util.*
 
 private typealias Type = String
 private typealias VariableNames = MutableList<String>
+private typealias VariableName = String
+private typealias Value = String
 
 class BuilderListener(private val outputName: String, private val builderName: String = "Builder") : BuilderBaseListener() {
 
     private val sb = StringBuilder(2000)
     private var indentLevel = 0
+
     private val requiredMembers = mutableMapOf<Type, VariableNames>()
     private val optionalMembers = mutableMapOf<Type, VariableNames>()
+    private val optionalValues = mutableMapOf<VariableName, Value>()
 
     private lateinit var className: String
     private lateinit var outputFile: File
@@ -33,18 +37,27 @@ class BuilderListener(private val outputName: String, private val builderName: S
     override fun enterMember_line(ctx: BuilderParser.Member_lineContext?) {
         val type = ctx!!.type().text
 
-        for (reqMember in ctx.required_members()) {
-            for (id in reqMember.ID()) {
+        for (reqMembers in ctx.required_members()) {
+            for (reqMember in reqMembers.required_member()) {
 
-                addRequiredMember(type, id.text)
+                addRequiredMember(type, reqMember.ID().text)
             }
         }
 
-        for (optMember in ctx.optional_members()) {
-            for (id in optMember.ID()) {
+        for (optMembers in ctx.optional_members()) {
+            for (optMember in optMembers.optional_member()) {
 
-                addOptionalMember(type, id.text)
+                addOptionalMember(type, optMember.ID().text)
             }
+        }
+    }
+
+    override fun enterOptional_member(ctx: BuilderParser.Optional_memberContext?) {
+        val id = ctx!!.ID().text
+        val value = ctx.default_value()?.text.orEmpty()
+
+        if (value.isNotEmpty()) {
+            optionalValues[id] = value
         }
     }
 
@@ -76,7 +89,6 @@ class BuilderListener(private val outputName: String, private val builderName: S
         block()
         --indentLevel
     }
-
 
     private fun writeOutput() {
         write("public class $className {")
@@ -159,6 +171,12 @@ class BuilderListener(private val outputName: String, private val builderName: S
             forEachNameIn(requiredMembers) { name ->
                 write("this.$name = $name;")
             }
+
+            forEachNameIn(optionalMembers) { name ->
+                if (optionalValues.containsKey(name)) {
+                    write("this.$name = ${optionalValues[name]};")
+                }
+            }
         }
         write("}")
     }
@@ -185,14 +203,12 @@ class BuilderListener(private val outputName: String, private val builderName: S
     }
 
     private fun write(string: String = "") {
-
         repeat(indentLevel) { sb.append(TAB) }
         sb.append(string)
         sb.append('\n')
     }
 
     private fun flushToFile() {
-
         outputFile.appendText(sb.toString())
     }
 

@@ -26,6 +26,8 @@ public class User {
         public Builder(String name, String surname) {
             this.name = name;
             this.surname = surname;
+            this.age = 0;
+            this.phone = 166;
         }
         
         public Builder age(int age) {

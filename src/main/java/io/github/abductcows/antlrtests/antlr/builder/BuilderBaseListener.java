@@ -88,6 +88,18 @@ public class BuilderBaseListener implements BuilderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRequired_member(BuilderParser.Required_memberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRequired_member(BuilderParser.Required_memberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterOptional_members(BuilderParser.Optional_membersContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -95,6 +107,30 @@ public class BuilderBaseListener implements BuilderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOptional_members(BuilderParser.Optional_membersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOptional_member(BuilderParser.Optional_memberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOptional_member(BuilderParser.Optional_memberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDefault_value(BuilderParser.Default_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefault_value(BuilderParser.Default_valueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

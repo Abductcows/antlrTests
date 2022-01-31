@@ -4,19 +4,15 @@
 grammar Builder;
 
 class_declaration:
-    class_name declaration_separator members
+    class_name (declaration_separator members)?
     ;
 
 class_name:
     (CLASS_DECLARATION_PREFIX)? ID
     ;
 
-/**
-    String a, b; <-- one declaration
-    int c d      <-- another declaration
-*/
 members:
-    (member_line declaration_separator)+
+    member_line (declaration_separator member_line)+
     ;
 
 member_line:
@@ -26,16 +22,30 @@ member_line:
 type: ID
     ;
 
-required_members: (ID member_separator)+
+required_members:
+    required_member (member_separator required_member)*
     ;
 
-optional_members: '(' (ID member_separator)+ ')'
+required_member: ID
+    ;
+
+optional_members:
+    '(' optional_member (member_separator optional_member)* ')'
+    ;
+
+optional_member:
+    ID ('=' default_value)?
+    ;
+
+default_value:
+        ID
+    |   NUMBER
+    |   QUOTED_VALUE
     ;
 
 declaration_separator:
-        NEWLINE+
-    |   ';' NEWLINE*
-    |
+        ';'? NEWLINE+
+    |   ';'
     ;
 
 member_separator:
@@ -44,7 +54,6 @@ member_separator:
     ;
 
 fragment LETTER: [a-zA-Z];
-fragment DIGIT: [0-9];
 fragment ID_SPECIAL_CHAR: [_$];
 
 fragment A:[aA]; fragment B:[bB]; fragment C:[cC]; fragment D:[dD];
@@ -57,6 +66,9 @@ fragment Y:[yY]; fragment Z:[zZ];
 
 CLASS_DECLARATION_PREFIX: B U I L D E R ' ' O F;
 
-ID: (LETTER | ID_SPECIAL_CHAR) (LETTER | DIGIT | ID_SPECIAL_CHAR )*;
+ID: (LETTER | ID_SPECIAL_CHAR) (LETTER | [0-9] | ID_SPECIAL_CHAR )*;
+NUMBER: [-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?;
 NEWLINE: '\n' | '\r\n';
-WHITESPACE: [ \t] -> skip;
+SPACES: (' ' | '\t')+ -> skip;
+
+QUOTED_VALUE: '"'.*?'"';

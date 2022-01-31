@@ -1,4 +1,4 @@
 User
 String name, surname
-int (age)
-String (phone)
+int (age = 0)
+String (phone= 166)
