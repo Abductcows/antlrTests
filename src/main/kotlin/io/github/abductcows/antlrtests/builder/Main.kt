@@ -11,15 +11,20 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker
 fun main() {
 
     // (from arguments)
-    val fileName = "src/test/resources/User.txt"
+    val fileName = "src/test/resources/assertions/User.txt"
     var outputName = ""
-
-    // program
 
     if (outputName.isEmpty()) {
         outputName = changeFileEnding(fileName, ".java")
-        println(outputName)
     }
+
+    // program
+    generateFor(fileName, outputName)
+}
+
+fun generateFor(fileName: String, outputName: String) {
+
+    println("generating for $fileName")
 
     val file = CharStreams.fromFileName(fileName)
     val lexer = BuilderLexer(file)

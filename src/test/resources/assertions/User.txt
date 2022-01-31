@@ -1,0 +1,8 @@
+User
+String name, (surname="") (phone="0")
+int age
+double (weightKg heightCm)
+String address
+String (starSign="")
+double (idk = 131.32)
+int (ye = 99)
