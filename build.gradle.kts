@@ -14,8 +14,9 @@ repositories {
 
 dependencies {
 
-    implementation(files("/usr/local/lib/antlr-4.9.2-complete.jar"))
     implementation(kotlin("stdlib-jdk8"))
+
+    implementation("org.antlr:antlr4-runtime:4.9.3")
 }
 
 
