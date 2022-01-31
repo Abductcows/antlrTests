@@ -62,5 +62,6 @@ ID: (LETTER | ID_SPECIAL_CHAR) (LETTER | [0-9] | ID_SPECIAL_CHAR )*;
 NUMBER: [-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?;
 NEWLINE: '\n' | '\r\n';
 SPACES: (' ' | '\t')+ -> skip;
+COMMENT: '/' '/' .*? (NEWLINE | EOF) -> skip;
 
 QUOTED_VALUE: '"'.*?'"';

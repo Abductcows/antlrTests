@@ -4,5 +4,5 @@ int age
 double (weightKg heightCm)
 String address
 String (starSign="")
-double (idk = 131.32)
-int (ye = 99)
+double (idk = 131.32) // idk
+int (ye = 99) // will need this later

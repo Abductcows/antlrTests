@@ -18,7 +18,7 @@ public class BuilderParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, ID=6, NUMBER=7, NEWLINE=8, SPACES=9, 
-		QUOTED_VALUE=10;
+		COMMENT=10, QUOTED_VALUE=11;
 	public static final int
 		RULE_class_declaration = 0, RULE_class_name = 1, RULE_members = 2, RULE_member_line = 3, 
 		RULE_type = 4, RULE_required_members = 5, RULE_required_member = 6, RULE_optional_members = 7, 
@@ -42,7 +42,7 @@ public class BuilderParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, "ID", "NUMBER", "NEWLINE", "SPACES", 
-			"QUOTED_VALUE"
+			"COMMENT", "QUOTED_VALUE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -787,14 +787,14 @@ public class BuilderParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\fe\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\re\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\5\2\37\n\2\3\3\3\3\3\4\3\4\3\4\3\4\6\4"+
 		"\'\n\4\r\4\16\4(\3\5\3\5\3\5\5\5.\n\5\3\5\3\5\6\5\62\n\5\r\5\16\5\63\3"+
 		"\6\3\6\3\7\3\7\3\7\3\7\7\7<\n\7\f\7\16\7?\13\7\3\b\3\b\3\t\3\t\3\t\3\t"+
 		"\3\t\7\tH\n\t\f\t\16\tK\13\t\3\t\3\t\3\n\3\n\3\n\5\nR\n\n\3\13\3\13\3"+
 		"\f\5\fW\n\f\3\f\6\fZ\n\f\r\f\16\f[\3\f\5\f_\n\f\3\r\3\r\5\rc\n\r\3\r\2"+
-		"\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\3\4\2\b\t\f\f\2c\2\32\3\2\2\2\4"+
+		"\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\3\4\2\b\t\r\r\2c\2\32\3\2\2\2\4"+
 		" \3\2\2\2\6\"\3\2\2\2\b*\3\2\2\2\n\65\3\2\2\2\f\67\3\2\2\2\16@\3\2\2\2"+
 		"\20B\3\2\2\2\22N\3\2\2\2\24S\3\2\2\2\26^\3\2\2\2\30b\3\2\2\2\32\36\5\4"+
 		"\3\2\33\34\5\26\f\2\34\35\5\6\4\2\35\37\3\2\2\2\36\33\3\2\2\2\36\37\3"+
