@@ -10,7 +10,8 @@ private typealias VariableNames = MutableList<String>
 private typealias VariableName = String
 private typealias Value = String
 
-class BuilderListener(private val outputName: String, private val builderName: String = "Builder") : BuilderBaseListener() {
+class BuilderListener(private val outputName: String, private val builderName: String = "Builder") :
+    BuilderBaseListener() {
 
     private val sb = StringBuilder(2000)
     private var indentLevel = 0
@@ -73,7 +74,7 @@ class BuilderListener(private val outputName: String, private val builderName: S
             .add(id)
     }
 
-    private fun forEachNameWithTypeIn(map: Map<Type, VariableNames>, block: (Type, String) -> Unit) {
+    private inline fun forEachNameWithTypeIn(map: Map<Type, VariableNames>, block: (Type, String) -> Unit) {
 
         for ((type: Type, variableNames: MutableList<String>) in map) {
             for (name in variableNames) {
@@ -82,9 +83,10 @@ class BuilderListener(private val outputName: String, private val builderName: S
         }
     }
 
-    private fun forEachNameIn(map: Map<Type, VariableNames>, block: (String) -> Unit) = forEachNameWithTypeIn(map) { _, name -> block(name) }
+    private inline fun forEachNameIn(map: Map<Type, VariableNames>, block: (String) -> Unit) =
+        forEachNameWithTypeIn(map) { _, name -> block(name) }
 
-    private fun <T> withNextIndent(block: () -> T) {
+    private inline fun <T> withNextIndent(block: () -> T) {
         ++indentLevel
         block()
         --indentLevel
@@ -218,5 +220,5 @@ class BuilderListener(private val outputName: String, private val builderName: S
     }
 }
 
-fun joinString(sep: CharSequence, joinBlock: StringJoiner.() -> Unit): String =
+private inline fun joinString(sep: CharSequence, joinBlock: StringJoiner.() -> Unit): String =
     StringJoiner(sep).apply(joinBlock).toString()
